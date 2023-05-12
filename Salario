@@ -1,0 +1,69 @@
+import './App.css'
+import { useState } from 'react';
+import React from 'react';
+
+function App() {
+
+  const [htrabalhadas, setHtrabalhadas] = useState(0);
+  const [hextra, setHextra] = useState(0);
+  const [vhora, setVhora] = useState(0);
+  const [sbruto, setSbruto] = useState(0);
+  const [sliquido, setSliquido] = useState(0);
+  const [inss, setInss] = useState(0);
+  const [fgts, setFgts] = useState(0);
+
+
+  function calcularTudo() {
+    setSbruto((htrabalhadas + hextra * (1+100/100))*vhora*4);
+    setSliquido(sbruto - inss);
+    setInss(sbruto * (9/100));
+    setFgts(sbruto * (8/100));
+  }
+
+  return (
+    <div className="App">
+      <label>
+        Informe o número de horas trabalhadas:
+        <input type="number" value={htrabalhadas} onChange={(e) => setHtrabalhadas(Number(e.target.value))} />
+      </label>
+      <br />
+      <label>
+        Informe o número de horas extras:
+        <input type="number" value={hextra} onChange={(e) => setHextra(Number(e.target.value))} />
+      </label>
+      <br />
+      <label>
+        Informe o valor da hora:
+        <input type="number" value={vhora} onChange={(e) => setVhora(Number(e.target.value))} />
+      </label>
+
+      <br />
+      <button onClick={calcularTudo}>Calcular</button>
+
+      <br />
+      <label>
+        O salário bruto é:
+        <input type="number" value={sbruto} readOnly />
+      </label>
+      <br />
+      <label>
+        O salário líquido é:
+        <input type="number" value={sliquido} readOnly />
+      </label>
+      <br />
+      <label>
+        O INSS é:
+        <input type="number" value={inss} readOnly />
+      </label>
+      <br />
+      <label>
+        O FGTS é:
+        <input type="number" value={fgts} readOnly />
+      </label>
+      <br />
+    </div>
+
+  );
+}
+
+export default App;
