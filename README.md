@@ -1,2 +1,2 @@
 # MyProjects
-Simple projects that I made every day.
+Projects that I made
